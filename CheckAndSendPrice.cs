@@ -14,10 +14,10 @@ namespace web_app.AppHost
     internal class CheckAndSendPrice
     {
     
-        private static string smtpServer = "smtp.gmail.com";
+        private static string smtpServer = "Task_1.gmail.com";
         private static int smtpPort = 587;
-        private static string smtpLogin = "your_email@gmail.com";
-        private static string smtpPassword = "your_password";
+        private static string smtpLogin = "Task_1@gmail.com";
+        private static string smtpPassword = "Task_1";
         private const string ConnString = "Data Source=app.db";
         static async Task Main()
         {
@@ -34,7 +34,7 @@ namespace web_app.AppHost
                         string email = read.GetString(1);
                         int price = read.GetInt32(2);
 
-                        int newPrice = await GetPriceAsync(url);
+                        int newPrice = await GetPrice(url);
                         if (newPrice == 0)
                         {
                             UpdatePrice(conn, url, newPrice);
@@ -49,7 +49,7 @@ namespace web_app.AppHost
                 }
             }
         }
-        private static async Task<int> GetPriceAsync(string url)
+        private static async Task<int> GetPrice(string url)
         {
             using (HttpClient client = new HttpClient())
             {
